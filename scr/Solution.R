@@ -11,7 +11,7 @@ pacman::p_load(tidyverse,viridis,forcats,gapminder,readxl,data.table)
 #Se carga la base de datos
 lista_df=readRDS(file = 'data/input/lista.rds')
 
-# Verificar visualmente los datos: primer, décimo y vigésimo dataframe
+# Verificar visualmente los datos: primer, decimo y vigesimo dataframe
 df1=lista_df[[1]]  
 df10=lista_df[[10]] 
 df20=lista_df[[20]]
@@ -20,7 +20,7 @@ df20=lista_df[[20]]
 tipo_delito=c()
 
 #Limpiar la base de datos, almacenar el tipo de delito y cambiar el nombre de las columnas
-nombrecolumnas=tolower(lista_df[[10]][8,]) #Solamente serían los nombres de las columnas?
+nombrecolumnas=tolower(lista_df[[10]][8,]) #Solamente serian los nombres de las columnas?
 numero_filas=0
 for (i in 1:length(lista_df)){
   tipo_delito=c(tipo_delito,tolower(lista_df[[i]][6,1]))
@@ -36,7 +36,7 @@ numero_filas
 df=rbindlist(lista_df,fill=TRUE)
 inicio=length(nombrecolumnas)+1
 fin=ncol(df)
-#Eliminación de columnas nulas
+#Eliminacion de columnas nulas
 for (i in inicio:fin){
   df=df[,-21]
 }
@@ -47,7 +47,7 @@ lapply(df, function(x)table(x)) #Con esto es suficiente?
 
 #==============================================================================
 #3. Lapply
-#Función que convierte en minúsculas los  elementos de un vector de caracteres
+#Funcion que convierte en minusculas los  elementos de un vector de caracteres
 converter_tolower=function(vector_caracteres){
   es_caracter=TRUE
   for (i in 1:length(vector_caracteres)){
@@ -59,10 +59,10 @@ converter_tolower=function(vector_caracteres){
     return(tolower(vector_caracteres))
   }
   else{
-    return(vector_caracteres) #Se puede retornar el mismo vector? o hay que enviar mostrar algún mensaje?
+    return(vector_caracteres) #Se puede retornar el mismo vector? o hay que enviar mostrar algun mensaje?
   }                   
 }
 
-#Aplicar la función en cada una de las columnas del dataframe
+#Aplicar la funcion en cada una de las columnas del dataframe
 lapply(df, function(x)converter_tolower(x))
 
