@@ -23,9 +23,13 @@ tipo_delito=c()
 nombrecolumnas=tolower(lista_df[[10]][8,]) #Solamente serian los nombres de las columnas?
 numero_filas=0
 for (i in 1:length(lista_df)){
+  #Se almacena el tipo de delito de cada dataframe
   tipo_delito=c(tipo_delito,tolower(lista_df[[i]][6,1]))
+  #Se eliminan las filas con NA
   lista_df[[i]]=subset(lista_df[[i]],is.na(...2)==F)
+  #Se cambian los nombres de las columnas de cada dataframe contenido en la lista a minuscula
   colnames(lista_df[[i]])=nombrecolumnas
+  #Se elimina la primera fila que queda que corresponde al nombre de las columnas (con la linea anterior se encontraria repetida)
   lista_df[[i]]=lista_df[[i]][-1,]
   numero_filas=numero_filas+nrow(lista_df[[i]])
 }
