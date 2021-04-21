@@ -65,3 +65,4 @@ converter_tolower=function(vector_caracteres){
 
 #Aplicar la función en cada una de las columnas del dataframe
 lapply(df, function(x)converter_tolower(x))
+
