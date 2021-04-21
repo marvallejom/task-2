@@ -1,7 +1,7 @@
 #==============================================================================#
 # Autores: Maria Vallejo, Andrea Cortes, Miguel Castillo
 # # Fecha elaboracion:18 de abril de 2021
-# Ultima modificacion: 19 de abril de 2021
+# Ultima modificacion: 21 de abril de 2021
 # Version de R: 4.0.3
 #==============================================================================#
 #Se cargan las librerías
@@ -20,7 +20,7 @@ df20=lista_df[[20]]
 tipo_delito=c()
 
 #Limpiar la base de datos, almacenar el tipo de delito y cambiar el nombre de las columnas
-nombrecolumnas=tolower(lista_df[[10]][8,])
+nombrecolumnas=tolower(lista_df[[10]][8,]) #Solamente serían los nombres de las columnas?
 numero_filas=0
 for (i in 1:length(lista_df)){
   tipo_delito=c(tipo_delito,tolower(lista_df[[i]][6,1]))
@@ -34,4 +34,34 @@ numero_filas
 
 #Dataframe con los elementos de la lista
 df=rbindlist(lista_df,fill=TRUE)
+inicio=length(nombrecolumnas)+1
+fin=ncol(df)
+#Eliminación de columnas nulas
+for (i in inicio:fin){
+  df=df[,-21]
+}
+#==============================================================================
+#2. Familia apply
+#Tabla de frecuencia para cada una de las variables
+lapply(df, function(x)table(x)) #Con esto es suficiente?
 
+#==============================================================================
+#3. Lapply
+#Función que convierte en minúsculas los  elementos de un vector de caracteres
+converter_tolower=function(vector_caracteres){
+  es_caracter=TRUE
+  for (i in 1:length(vector_caracteres)){
+    if(is.character(vector_caracteres[i])==FALSE){
+      es_caracter=FALSE
+    }
+  }
+  if(es_caracter==TRUE){
+    return(tolower(vector_caracteres))
+  }
+  else{
+    return(vector_caracteres) #Se puede retornar el mismo vector? o hay que enviar mostrar algún mensaje?
+  }                   
+}
+
+#Aplicar la función en cada una de las columnas del dataframe
+lapply(df, function(x)converter_tolower(x))
