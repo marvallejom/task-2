@@ -20,7 +20,7 @@ df20=lista_df[[20]]
 tipo_delito=c()
 
 #Limpiar la base de datos, almacenar el tipo de delito y cambiar el nombre de las columnas
-nombrecolumnas=tolower(lista_df[[10]][8,]) #Solamente serian los nombres de las columnas?
+nombrecolumnas=tolower(lista_df[[10]][8,]) 
 numero_filas=0
 for (i in 1:length(lista_df)){
   #Se almacena el tipo de delito de cada dataframe
@@ -47,7 +47,7 @@ for (i in inicio:fin){
 #==============================================================================
 #2. Familia apply
 #Tabla de frecuencia para cada una de las variables
-lapply(df, function(x)table(x)) #Con esto es suficiente?
+lapply(df, function(x)table(x)) 
 
 #==============================================================================
 #3. Lapply
@@ -63,7 +63,7 @@ converter_tolower=function(vector_caracteres){
     return(tolower(vector_caracteres))
   }
   else{
-    return(vector_caracteres) #Se puede retornar el mismo vector? o hay que enviar mostrar algun mensaje?
+    return(vector_caracteres) 
   }                   
 }
 
